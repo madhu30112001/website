@@ -48,4 +48,3 @@ app.listen(4000, () => {
   console.log("Server is running on port 4000");
 });
 
-// mongodb+srv://madhu:Madhu30042001@cluster0.zxh2m.mongodb.net/?
