@@ -87,18 +87,5 @@ const createToken = (id, email) => {
 );
 };
 
-// const LogOut=(req,res)=>{
-//   if (req.session) {
-//     req.session.destroy((err) => {
-//       if (err) {
-//         console.error("Failed to destroy session during logout", err);
-//         return res.status(500).json({ message: "Logout failed" });
-//       }
-//       res.clearCookie("token"); // Clear the token cookie, adjust the name if necessary
-//       res.status(200).json({ message: "Logout successful" });
-//     });
-//   } else {
-//     res.status(400).json({ message: "No session found to log out" });
-//   }
-//}
+
 export { registeruser, loginuser};
