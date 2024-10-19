@@ -2,6 +2,8 @@ import React, { useContext, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { StoreContext } from "../contextapi/contextapi";
 import axios from "axios";
+import register from "./Register"
+
 import { toast } from "react-toastify";
 const Login = () => {
   const { url, setToken,setUser } = useContext(StoreContext);
@@ -35,8 +37,9 @@ const Login = () => {
     }
   };
   if (redirect) {
-    window.location.href = "http://localhost:5173/";
-    return null; // Return null since the page is redirecting
+    // window.location.href = "http://localhost:5173/";
+    return <Navigate to="/" />; // Redirect to home page
+
   }
   return (
     <div className="mt-4 w-[100%] h-[100%] relative z-[1000] grow flex items-center justify-around">
