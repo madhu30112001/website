@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 // const mongoose = require("mongoose");
 
 export const connectDB = async () => {
-  await mongoose.connect('mongodb://127.0.0.1:27017/FoodDel')
+  await mongoose.connect('')
     .then(() => {
       console.log('DB connected');
     })
