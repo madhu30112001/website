@@ -1,0 +1,114 @@
+.food-display-header{
+padding: 0 1em .6em 0;
+}
+.food-display-list{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px,1fr));
+    margin-top: 30px;
+    gap: 30px;
+    row-gap: 50px;
+}
+.recipe-card{
+    isolation: isolate;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    background-color: var(--background-color);
+    animation: getAnimationDuration(.3s) fadeIn ease-in-out;
+    .recipe-card-info{
+        padding: 15px;
+    }
+    .customeimage{
+      z-index: -1;
+    }
+    .author-img{
+        height: 60px;
+        width: 60px;
+        border-radius: 50%;
+        border: 3x solid var(--background-light);
+        box-shadow: 0 1px 3px var(--shadow-color);
+        margin-top: -60px;
+        z-index: 2;
+    }
+    .cart-btn{
+        position: absolute;
+        right: 1.4em;
+        border: none;
+        padding: .3em;
+        width: 1em;
+        height: 1em;
+        background-color: var(--background-color);
+        border-radius: 50px;
+        color: #000;
+        margin-top: -3em;
+        cursor: pointer;
+    }
+    .recipe-card-counter{
+        background-color: #fff;
+        margin-top: -3.2em;
+        right: .8em;
+        justify-content: center;
+        box-shadow: 0 4px 6px var(--shadow-color);
+        align-items: center;
+        display: flex;
+        gap: .5em;
+        width: 33%;
+        padding: .3em;
+        border-radius: 55px;
+        position: absolute;
+        .cart-add-btn{
+            background-color: rgba(0,128,0,0.2999);
+            border-radius: 50px;
+            padding: .2em;
+            border: none;
+            width: 0.9em;
+            height: 0.9em;
+            color: green;
+            cursor: pointer;
+
+        }
+        .cart-remove-btn{
+            background-color: rgba(255,0,0,0.2999);
+            border-radius: 50px;
+            padding: .2em;
+            border: none;
+            width: 0.9em;
+            height: 0.9em;
+            color: red;
+            cursor: pointer;
+        }
+    }
+    .wrap-img-p{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .recipe-title{
+            font-size: 1.1em;
+            font-weight: bold;
+            color: var(--text-color);
+
+        }
+        .star-img{
+            height: 14px;
+            width: 104px;
+
+        }
+    }
+    .recipe-desc{
+        color: var(--text-light);
+        font-size: .9em;
+        letter-spacing: 1px;
+        margin-top: .9em;
+    }
+    .recipe-price{
+        color: var(--primary-color);
+        font-weight: 500;
+        letter-spacing: 1px;
+        margin-top: .9em;
+    }
+    .recipe-category{
+        color: var(--text-light);
+        margin-top: .9em;
+    }
+}

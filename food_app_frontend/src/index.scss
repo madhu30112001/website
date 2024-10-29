@@ -1,0 +1,83 @@
+:root {
+  --font-size: 16px;
+  --background-color: #fff;
+  --text-color: #000;
+  --text-light: #575757;
+  --animation-speed: 1;
+  --primary-color: rgb(255, 0, 86);
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --hover-color: rgba(149, 143, 143, 0.2);
+  --background-light: #fff;
+}
+
+@function getAnimationDuration($duration: number) {
+  @return calc($duration * var(--animation-speed));
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Outfit;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.app {
+  width: 80%;
+  margin: auto;
+}
+
+.customeimage {
+  height: 0;
+  width: 100%;
+  height: 200px;
+  border-radius: 3px;
+  position: relative;
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+img {
+  object-fit: cover;
+}
+li {
+  list-style-type: none;
+}
+
+@import "./partials/navbar";
+@import "./partials/header";
+@import "./partials/display";
+@import "./partials/exploremenu";
+@import "./partials/animations";
+@import "./partials/app-download";
+@import "./partials/cart";
+@import "./partials/footer";
+@import "./partials/loginpage";
+@import "./partials/placeholder";
+@import "./partials/verify"
+// @media (prefers-color-scheme: light) {
+//   :root {
+//     color: #213547;
+//     background-color: #ffffff;
+//   }
+//   a:hover {
+//     color: #747bff;
+//   }
+//   button {
+//     background-color: #f9f9f9;
+//   }
+// }

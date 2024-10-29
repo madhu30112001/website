@@ -1,0 +1,74 @@
+@import "./partials/add";
+@import "./partials/list";
+@import "./partials/navbar";
+@import "./partials/orders";
+@import "./partials/sidebar";
+
+
+
+
+:root {
+    --font-size: 16px;
+    --background-color: #fff;
+    --text-color: #000;
+    --text-light: #575757;
+    --animation-speed: 1;
+    --primary-color: rgb(255, 0, 86);
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --hover-color: rgba(149, 143, 143, 0.2);
+    --background-light: #fff;
+  }
+  
+  
+  
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Outfit;
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    min-height: 100vh;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .app-content {
+    width: 80%;
+    margin: auto;
+    display: flex;
+  }
+  .flex-col{
+    display: flex;
+    flex-direction: column;
+  gap: 10px;
+  }
+  hr{
+    border: none;
+    height: 1px;
+    background-color: #a9a9a9;
+}
+  
+  img {
+    object-fit: cover;
+  }
+  li {
+    list-style-type: none;
+  }
+  .flex-col{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .cursor{
+    cursor: pointer;
+  }
+  
+
+  
