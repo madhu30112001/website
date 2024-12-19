@@ -46,17 +46,29 @@ const StoreContextProvider = (props) => {
         }
 
         return totalAmount;
+
     }
 
+
+    
     const fetchFoodList = async () =>{
         const response = await axios.get(url+"/api/food/list");
         setFoodList(response.data.data)
     }
 
-    const loadCartData = async (token) =>{
-        const response = await axios.post(url+"/api/cart/get",{},{headers:{token}})
-        setCartItems(response.data.cartData);
-    }
+    const loadCartData = async (token) => {
+        try {
+            const response = await axios.post(
+                url + "/api/cart/get",
+                {}, // Assume `userId` is decoded from the token on the server
+                { headers: { Authorization: `Bearer ${token}` } }
+            );
+            setCartItems(response.data.cartData || {});
+        } catch (error) {
+            console.error("Failed to load cart data:", error.message);
+        }
+    };
+    
 
     useEffect(()=>{
         

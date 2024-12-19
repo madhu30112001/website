@@ -13,7 +13,7 @@ const ExploreMenuCard = ({
   price,
   category,
 }) => {
-  const { cartItems, addToCart, RemoveFromCart, url } =
+  const { cartItems, addToCart, removeFromCart, url } =
     useContext(StoreContext);
   return (
     <div className="recipe-card">
@@ -40,7 +40,7 @@ const ExploreMenuCard = ({
               <FontAwesomeIcon
                 id={id}
                 className="cart-remove-btn"
-                onClick={() => RemoveFromCart(id)}
+                onClick={() => removeFromCart(id)}
                 icon={faMinus}
               />
             </div>
