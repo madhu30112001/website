@@ -1,0 +1,77 @@
+# Food Website
+
+A modern, responsive food delivery website built using the MERN (MongoDB, Express, React, Node.js) stack. This project showcases a seamless user experience for browsing menus, ordering food, and tracking deliveries.
+
+## Features
+
+**User Authentication**: Sign up, log in, and secure access to user accounts.
+
+**Dynamic Menu**: Real-time updates to menu items and availability.
+
+**Order Management**: Add items to cart, place orders, and track delivery status.
+
+**Payment Integration**: Secure payment gateway for transactions.
+
+**Admin Panel**: Manage menu items, orders, and user accounts.
+
+**Mobile Responsive**: Optimized design for mobile and desktop views.
+
+## Technologies Used
+
+**Frontend**
+
+- React.js
+
+- CSS/SCSS
+
+**Backend**
+
+- Node.js
+
+- Express.js
+
+- MongoDB client (database)
+
+- Mongoose (ODM)
+
+## Installation
+
+### Prerequisites
+
+Node.js installed
+
+MongoDB server running
+
+## Steps
+
+**Clone the repository**:
+
+git clone 
+
+**Navigate to the project directory**:
+
+cd food-website
+
+Install dependencies:
+
+npm install
+
+**Start the development server**:
+
+cd ..
+
+npm run dev
+
+## Screenshots
+
+Frontend
+
+![localhost_5173_ (10)](https://github.com/user-attachments/assets/556d8f35-26e1-47c3-a478-ef4b164403c3)
+![localhost_5173_2](https://github.com/user-attachments/assets/1bd8c20b-6e21-441d-9786-bf6bd8843b82)
+
+## Admin
+
+![localhost_5174_add (2)](https://github.com/user-attachments/assets/c701d29c-2bd5-4d31-8e81-47b97a63ebaa)
+
+
+
