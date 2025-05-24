@@ -72,6 +72,8 @@ Frontend
 ## Admin
 
 ![localhost_5174_add (2)](https://github.com/user-attachments/assets/c701d29c-2bd5-4d31-8e81-47b97a63ebaa)
+![localhost_5174_add (1)](https://github.com/user-attachments/assets/16cfdf90-e089-4552-aa54-699a3c35878e)
+
 
 
 
