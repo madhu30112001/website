@@ -67,11 +67,18 @@ npm run dev
 Frontend
 
 ![localhost_5173_ (10)](https://github.com/user-attachments/assets/556d8f35-26e1-47c3-a478-ef4b164403c3)
+
+![localhost_5174_cart](https://github.com/user-attachments/assets/0a368460-13c3-4876-8496-dbe7833bc8ec)
+
 ![localhost_5173_2](https://github.com/user-attachments/assets/1bd8c20b-6e21-441d-9786-bf6bd8843b82)
+
+![localhost_5174_cart (1)](https://github.com/user-attachments/assets/4e393d95-b96a-488c-a0ed-e57a60ece247)
+
 
 ## Admin
 
 ![localhost_5174_add (2)](https://github.com/user-attachments/assets/c701d29c-2bd5-4d31-8e81-47b97a63ebaa)
+
 ![localhost_5174_add (1)](https://github.com/user-attachments/assets/16cfdf90-e089-4552-aa54-699a3c35878e)
 
 
