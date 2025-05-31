@@ -32,11 +32,26 @@
 ---
 ## Screenshots
 
+### 🔐 Login Page
 ![alt text](<localhost_5173_ (10).png>)
+
+### 🏠 Homepage
 ![alt text](<localhost_5173_ (2).png>)
+
+### 👤 Profile Page
 ![alt text](<localhost_5173_ (4).png>)
+
+### 🏘️ Accommodation Page 
 ![alt text](<localhost_5173_ (6).png>)
+
+### ➕ Add New Place Form Page  
 ![alt text](<localhost_5173_ (7).png>)
+
+### 📅 Booking Details Page  
 ![alt text](<localhost_5173_ (5).png>)
+
+### 🧾 Booking Page 
 ![alt text](<localhost_5173_ (8).png>)
+
+### 📅 Booking Details Full Page  
 ![alt text](<localhost_5173_ (9).png>)
