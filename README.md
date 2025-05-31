@@ -27,8 +27,16 @@
 - 🏡 Host can add & edit listings
 - 📆 Users can book places with check-in/check-out
 - 📷 Image uploads for listings
-- 🔎 Search and filter stays
 - 📱 Mobile-first responsive design
 
 ---
+## Screenshots
 
+![alt text](<localhost_5173_ (10).png>)
+![alt text](<localhost_5173_ (2).png>)
+![alt text](<localhost_5173_ (4).png>)
+![alt text](<localhost_5173_ (6).png>)
+![alt text](<localhost_5173_ (7).png>)
+![alt text](<localhost_5173_ (5).png>)
+![alt text](<localhost_5173_ (8).png>)
+![alt text](<localhost_5173_ (9).png>)

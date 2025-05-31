@@ -38,7 +38,7 @@ const Login = () => {
   }
   return (
     <div className="mt-4 w-[100%] h-[100%] relative z-[1000] grow flex items-center justify-around">
-      <div className="mb-64">
+      <div className="mb-0">
         <h1 className="text-4xl mb-4 text-center">Login</h1>
         <form
           className="max-w-md mx-auto border rounded-2xl shadow-md shadow-gray-300 p-3"
