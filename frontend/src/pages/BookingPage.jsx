@@ -19,9 +19,7 @@ const BookingPage = () => {
             withCredentials: true,
           });
 
-
           const getdata = response.data.data.find((item) => item._id === id);
-
 
           if (getdata) {
             setBooking(getdata);

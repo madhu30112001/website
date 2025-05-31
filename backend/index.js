@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import { connectdb } from "./config/db.js";
 import "dotenv/config";
-import session from "express-session"; 
+import session from "express-session";
 import cookieParser from "cookie-parser";
 import userrouter from "./routes/userRoute.js";
 import profileRouter from "./routes/profileRoute.js";
@@ -28,17 +28,19 @@ app.use(
   cors({
     credentials: true,
     origin: "http://localhost:5173", // The frontend's origin
-  })
+  }),
 );
 
-
-app.use('/uploads', express.static(path.join(__dirname + '/controllers/Uploads')));
+app.use(
+  "/uploads",
+  express.static(path.join(__dirname + "/controllers/Uploads")),
+);
 
 app.use("/api/user", userrouter);
 app.use("/api", profileRouter);
-app.use('/api/images',imageRouter); // Serve uploaded files
-app.use('/api',placerouter)
-app.use('/api',BookRouter)
+app.use("/api/images", imageRouter); // Serve uploaded files
+app.use("/api", placerouter);
+app.use("/api", BookRouter);
 
 app.get("/", (req, res) => {
   res.send("api is working");
@@ -47,4 +49,3 @@ app.get("/", (req, res) => {
 app.listen(4000, () => {
   console.log("Server is running on port 4000");
 });
-

@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const placescheme = new mongoose.Schema({
-  owner: { type: mongoose.Schema.Types.ObjectId, ref: "Users",required:true },
+  owner: { type: mongoose.Schema.Types.ObjectId, ref: "Users", required: true },
   title: String,
   address: String,
   addedPhotos: [String],

@@ -1,0 +1,39 @@
+.tooltip-container {
+  position: relative;
+  display: inline-block;
+  width: 40rem;
+}
+
+.tooltip {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: black;
+  color: white;
+  width: 100%;
+  height: auto;
+  padding: 8px;
+  border-radius: 4px;
+  z-index: 10;
+  white-space: normal;
+}
+
+.tooltip-container:hover .tooltip {
+  display: block;
+}
+.text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Override on mobile */
+@media (max-width: 640px) {
+  .text {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    word-break: break-word;
+  }
+}

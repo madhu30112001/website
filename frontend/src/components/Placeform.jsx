@@ -95,10 +95,12 @@ const Placeform = () => {
           maxGuests,
           price,
         },
-        { withCredentials: true }
+        { withCredentials: true },
       );
       setRedirect("/account/places");
-      toast.success(id ? "Place updated successfully" : "Place added successfully");
+      toast.success(
+        id ? "Place updated successfully" : "Place added successfully",
+      );
     } catch (error) {
       toast.error("Failed to save place data");
     }
@@ -114,12 +116,9 @@ const Placeform = () => {
 
   return (
     <div>
-      <Account />
-      <form onSubmit={handleSubmit} className="lg:px-20">
-        <InputSection
-          title="Title"
-          description="A catchy title for your place"
-        >
+      {/* <Account /> */}
+      <form onSubmit={handleSubmit} className="py-10 px-2 lg:px-20">
+        <InputSection title="Title" description="A catchy title for your place">
           <input
             type="text"
             value={title}
@@ -185,7 +184,9 @@ const Placeform = () => {
           <InputNumberSection
             title="Max Guests"
             value={maxGuests}
-            onChange={(ev) => setMaxGuests(Math.max(1, Number(ev.target.value)))}
+            onChange={(ev) =>
+              setMaxGuests(Math.max(1, Number(ev.target.value)))
+            }
             min={1}
           />
 
@@ -198,10 +199,22 @@ const Placeform = () => {
             error={price < 1000 ? "Price must be at least 1000" : ""}
           />
         </div>
-
-        <button type="submit" className="primary my-4" disabled={price < 1000}>
-          Save
-        </button>
+        <div className="flex justify-end gap-4 mt-6">
+          <button
+            type="submit"
+            className="px-6 py-2 bg-primary text-white rounded-full disabled:opacity-50"
+            disabled={price < 1000}
+          >
+            Submit
+          </button>
+          <button
+            type="button"
+            onClick={() => setRedirect("/account/places")}
+            className="px-6 py-2 bg-gray-300 text-gray-800 rounded-full"
+          >
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );
@@ -220,11 +233,23 @@ const InputSection = ({ title, description, children }) => (
 const InputTimeSection = ({ title, value, onChange, placeholder }) => (
   <div>
     <h3 className="mt-2 -mb-1">{title}</h3>
-    <input type="text" value={value} onChange={onChange} placeholder={placeholder} />
+    <input
+      type="text"
+      value={value}
+      onChange={onChange}
+      placeholder={placeholder}
+    />
   </div>
 );
 
-const InputNumberSection = ({ title, value, onChange, placeholder, min, error }) => (
+const InputNumberSection = ({
+  title,
+  value,
+  onChange,
+  placeholder,
+  min,
+  error,
+}) => (
   <div>
     <h3 className="mt-2 -mb-1">{title}</h3>
     <input

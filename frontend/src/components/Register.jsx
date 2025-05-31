@@ -7,9 +7,9 @@ import { toast } from "react-toastify";
 const Register = () => {
   const { url, setToken } = useContext(StoreContext);
   const [currState, setCurrentState] = useState("Login");
-  const[name, setName]=useState('')
-  const [email, setEmail]=useState('')
-const[password,setPassword]=useState('')
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   function onChangeHandler(event) {
     const name = event.target.name;
     const value = event.target.value;
@@ -19,7 +19,11 @@ const[password,setPassword]=useState('')
   const handleRegisterSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(`${url}/api/user/register`, {name,email,password},{withCredentials:true});
+      const response = await axios.post(
+        `${url}/api/user/register`,
+        { name, email, password },
+        { withCredentials: true },
+      );
       if (response.data.success) {
         // setToken(response.data.token);
         // localStorage.setItem("token", response.data.token);
@@ -51,7 +55,7 @@ const[password,setPassword]=useState('')
             name="name"
             id="name"
             placeholder="your name"
-            onChange={event=>setName(event.target.value)}
+            onChange={(event) => setName(event.target.value)}
             value={name}
             required
           />
@@ -60,7 +64,7 @@ const[password,setPassword]=useState('')
             name="email"
             id="email"
             placeholder="your@gmail.com"
-            onChange={event=>setEmail(event.target.value)}
+            onChange={(event) => setEmail(event.target.value)}
             value={email}
             required
           />
@@ -69,13 +73,13 @@ const[password,setPassword]=useState('')
             name="password"
             id="password"
             placeholder="your password"
-            onChange={event=>setPassword(event.target.value)}
+            onChange={(event) => setPassword(event.target.value)}
             value={password}
             required
           />
           <button className="primary">Register</button>
           <div className=" text-gray-500">
-            <input className="mr-1" type="checkbox" name="" id="" required/>
+            <input className="mr-1" type="checkbox" name="" id="" required />
             By continuing I agree to the terms of use & privacy policy
           </div>
           <div className="p-2 text-center text-gray-500">

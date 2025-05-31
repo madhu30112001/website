@@ -13,6 +13,7 @@ import { useState, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Account from "./pages/Account";
+import "./index.css";
 import Places from "./pages/Places";
 import Placeform from "./components/Placeform";
 import ProfileComp from "./components/ProfileComp";
@@ -35,8 +36,7 @@ function App() {
           <Route path="/account/places" element={<Places />} />
           <Route path="/account/places/new" element={<Placeform />} />
           <Route path="/account/places/:id" element={<Placeform />} />
-          <Route path="/places/:id" element={<PlacesInfo/>} />
-
+          <Route path="/places/:id" element={<PlacesInfo />} />
         </Route>
       </Routes>
     </>

@@ -1,18 +1,25 @@
 import React from "react";
 import Header from "./Header";
-import { Outlet, useLocation,matchPath } from "react-router-dom";
+import { Outlet, useLocation, matchPath } from "react-router-dom";
+import Footer from "./Footer";
 const Layout = () => {
-  const location=useLocation()
+  const location = useLocation();
 
   const isSpecialPage = matchPath("/places/:id", location.pathname);
+  const loginPage = matchPath("/login", location.pathname);
   console.log(isSpecialPage);
-  const headerstyle=isSpecialPage ? "sm:mx-10 md:mx-5 lg:mx-[13.5em]" :"sm:mx-2 md:mx-8 lg:mx-[4.5em]"
+  const headerstyle = isSpecialPage ? "py-3 px-4" : "py-3 px-4";
 
   return (
-    <div className="p-3 flex flex-col min-h-screen">
-      <Header headerClass={headerstyle} />
+    <div className="flex flex-col min-h-screen">
+      <Header
+        headerClass={headerstyle}
+        isSpecialPage={isSpecialPage}
+        loginPage={loginPage}
+      />
 
       <Outlet />
+      <Footer />
     </div>
   );
 };

@@ -2,21 +2,24 @@ import React from "react";
 import { faCat, faDog } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-
-
-const PerksLabels = ({selected,onChange}) => {
-  function handleCbClick(ev){
+const PerksLabels = ({ selected, onChange }) => {
+  function handleCbClick(ev) {
     const { name, checked } = ev.target;
     if (checked) {
       onChange([...selected, name]);
     } else {
-      onChange(selected.filter(item => item !== name));
+      onChange(selected.filter((item) => item !== name));
     }
   }
   return (
     <>
       <label className="border p-4 flex gap-2 mt-2 rounded-2xl items-center">
-        <input type="checkbox" name="wifi" onChange={handleCbClick} checked={selected.includes("wifi")} />
+        <input
+          type="checkbox"
+          name="wifi"
+          onChange={handleCbClick}
+          checked={selected.includes("wifi")}
+        />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -35,7 +38,12 @@ const PerksLabels = ({selected,onChange}) => {
         <span>Wifi</span>
       </label>
       <label className="border p-4 flex gap-2 rounded-2xl items-center">
-        <input type="checkbox" name="parking" onChange={handleCbClick} checked={selected.includes("parking")}/>
+        <input
+          type="checkbox"
+          name="parking"
+          onChange={handleCbClick}
+          checked={selected.includes("parking")}
+        />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -54,7 +62,12 @@ const PerksLabels = ({selected,onChange}) => {
         <span>Free parking spot</span>
       </label>
       <label className="border p-4 flex gap-2 rounded-2xl items-center">
-        <input type="checkbox" name="tv" onChange={handleCbClick} checked={selected.includes("tv")}/>
+        <input
+          type="checkbox"
+          name="tv"
+          onChange={handleCbClick}
+          checked={selected.includes("tv")}
+        />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -73,7 +86,12 @@ const PerksLabels = ({selected,onChange}) => {
         <span>TV</span>
       </label>
       <label className="border p-4 flex gap-2 rounded-2xl items-center">
-        <input type="checkbox" name="radio" onChange={handleCbClick} checked={selected.includes("radio")}/>
+        <input
+          type="checkbox"
+          name="radio"
+          onChange={handleCbClick}
+          checked={selected.includes("radio")}
+        />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -92,12 +110,22 @@ const PerksLabels = ({selected,onChange}) => {
         <span>Radio</span>
       </label>
       <label className="border p-4 flex gap-2 rounded-2xl items-center">
-        <input type="checkbox" name="pets" onChange={handleCbClick} checked={selected.includes("pets")}/>
+        <input
+          type="checkbox"
+          name="pets"
+          onChange={handleCbClick}
+          checked={selected.includes("pets")}
+        />
         <FontAwesomeIcon className="w-6 h-6" icon={faDog} />
         <span>Pets</span>
       </label>
       <label className="border p-4 flex gap-2 rounded-2xl items-center">
-        <input type="checkbox" name="entrance" onChange={handleCbClick} checked={selected.includes("entrance")}/>
+        <input
+          type="checkbox"
+          name="entrance"
+          onChange={handleCbClick}
+          checked={selected.includes("entrance")}
+        />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

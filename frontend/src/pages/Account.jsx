@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 
 const Account = () => {
   const { pathname } = useLocation();
-  let subpage = pathname.split('/')?.[2] || "profile";
+  let subpage = pathname.split("/")?.[2] || "profile";
 
   function renderContent(type = null) {
     let classes = "py-2 px-6 inline-flex gap-2 rounded-full";

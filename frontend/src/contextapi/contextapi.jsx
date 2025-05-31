@@ -8,7 +8,7 @@ const StoreContextProvider = (props) => {
   const url = "http://localhost:4000";
   const [token, setToken] = useState("");
   const [user, setUser] = useState(null);
-  const [ready,setReady]=useState(false);
+  const [ready, setReady] = useState(false);
   useEffect(() => {
     // Fetch the user profile if the user is not set
     const fetchUser = async () => {
@@ -30,7 +30,9 @@ const StoreContextProvider = (props) => {
     }
   }, [user, url]);
   return (
-    <StoreContext.Provider value={{ url, token, setToken, user, setUser,ready,setReady }}>
+    <StoreContext.Provider
+      value={{ url, token, setToken, user, setUser, ready, setReady }}
+    >
       {props.children}
     </StoreContext.Provider>
   );

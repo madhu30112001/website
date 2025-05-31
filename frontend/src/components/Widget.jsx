@@ -18,7 +18,7 @@ const Widget = ({ place }) => {
   if (checkIn && checkOut) {
     numberOfNights = differenceInCalendarDays(
       new Date(checkOut),
-      new Date(checkIn)
+      new Date(checkIn),
     );
   }
 
@@ -40,7 +40,7 @@ const Widget = ({ place }) => {
           mobile,
           price: numberOfNights * place.price,
         },
-        { withCredentials: true }
+        { withCredentials: true },
       );
       console.log(response);
       const bookingId = response?.data?.data?._id; // Optional chaining to safely access _id
@@ -51,7 +51,7 @@ const Widget = ({ place }) => {
       }
     } catch (error) {
       console.error(
-        error.response?.data?.message || "Error occurred while booking"
+        error.response?.data?.message || "Error occurred while booking",
       );
     }
   }
@@ -59,7 +59,7 @@ const Widget = ({ place }) => {
     return <Navigate to={redirect} />;
   }
   return (
-    <div className=" border flex flex-col p-4 h-auto mt-2 bg-white md:w-full lg:relative lg:left-5 md:justify-center lg:w-1/2 shadow-xl shadow-slate-200 rounded-3xl">
+    <div className=" border flex flex-col p-4 h-auto mt-2 bg-white md:w-full lg:relative md:justify-center lg:w-full shadow-xl shadow-slate-200 rounded-3xl">
       <p className="text-center text-primary text-[1.5em]">
         Price: ${place.price} / per night
       </p>

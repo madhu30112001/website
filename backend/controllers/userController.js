@@ -80,12 +80,13 @@ const loginuser = async (req, res) => {
 };
 //token creation
 const createToken = (id, email) => {
-  return jwt.sign({ id, email}, process.env.JWT_SECRET,
-  //    {
-  //   expiresIn: "2d",
-  // }
-);
+  return jwt.sign(
+    { id, email },
+    process.env.JWT_SECRET,
+    //    {
+    //   expiresIn: "2d",
+    // }
+  );
 };
 
-
-export { registeruser, loginuser};
+export { registeruser, loginuser };

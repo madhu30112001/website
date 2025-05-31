@@ -68,10 +68,8 @@ const Booking = async (req, res) => {
   });
 };
 
-
-
-const getBookings=async(req,res)=>{
-    const { token } = req.cookies;
+const getBookings = async (req, res) => {
+  const { token } = req.cookies;
 
   if (!token) {
     return res
@@ -83,13 +81,20 @@ const getBookings=async(req,res)=>{
       return res.status(403).json({ error: "Invalid or expired token" });
     }
     try {
-        const getBookings=await BookingModel.find({owner: userData.id }).populate('place')
+      const getBookings = await BookingModel.find({
+        owner: userData.id,
+      }).populate("place");
 
-        res.status(201).json({success:true,data:getBookings,message:"fetched bookings"})
+      res
+        .status(201)
+        .json({
+          success: true,
+          data: getBookings,
+          message: "fetched bookings",
+        });
     } catch (error) {
-        res.status(500).json({ message: "Error fetching places" });
-
+      res.status(500).json({ message: "Error fetching places" });
     }
-}
-  )}
-export {Booking,getBookings};
+  });
+};
+export { Booking, getBookings };

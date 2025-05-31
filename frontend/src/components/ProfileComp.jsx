@@ -12,17 +12,21 @@ const ProfileComp = () => {
   const { url, user, ready, setUser } = useContext(StoreContext);
   const location = useLocation();
   const pathname = location.pathname;
-  let subpage = pathname.split('/')?.[2];
-  
+  let subpage = pathname.split("/")?.[2];
+
   if (subpage === undefined) {
     subpage = "profile";
   }
 
   const logout = async () => {
     try {
-      const response = await axios.post(url + "/api/logout", {}, {
-        withCredentials: true,
-      });
+      const response = await axios.post(
+        url + "/api/logout",
+        {},
+        {
+          withCredentials: true,
+        },
+      );
       setRedirect("/");
       toast.success(response.data.message);
       setUser(null);
@@ -45,9 +49,9 @@ const ProfileComp = () => {
 
   return (
     <>
-      <Account />
+      {/* <Account /> */}
       {subpage === "profile" && (
-        <div className="max-w-lg mx-auto text-center md:max-w-3xl lg:max-w-4xl">
+        <div className="max-w-lg mx-auto my-10 text-center md:max-w-3xl lg:max-w-4xl">
           <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">
             Profile
           </h1>

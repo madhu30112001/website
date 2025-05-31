@@ -4,7 +4,7 @@ import { format } from "date-fns";
 
 const BookingDates = ({ book }) => {
   return (
-    <div className="flex flex-col sm:flex-row gap-2 text-gray-500 text-sm sm:text-base lg:text-lg">
+    <div className="flex flex-col sm:flex-row gap-2 text-gray-500 text-sm sm:text-base lg:text-[16px]">
       <div className="flex items-center gap-1">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -12,7 +12,7 @@ const BookingDates = ({ book }) => {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7"
+          className="w-3 h-3 sm:w-5 sm:h-5 lg:w-5 lg:h-8"
         >
           <path
             strokeLinecap="round"
@@ -20,10 +20,10 @@ const BookingDates = ({ book }) => {
             d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
           />
         </svg>
-        <p>
+        <p className="">
           {differenceInCalendarDays(
             new Date(book.checkOut),
-            new Date(book.checkIn)
+            new Date(book.checkIn),
           )}{" "}
           nights
         </p>
@@ -34,7 +34,7 @@ const BookingDates = ({ book }) => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="currentColor"
-          className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7"
+          className="w-5 h-5 sm:w-5 sm:h-6 lg:w-5 lg:h-8"
         >
           <path
             fillRule="evenodd"
@@ -52,7 +52,7 @@ const BookingDates = ({ book }) => {
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
           fill="currentColor"
-          className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7"
+          className="w-5 h-5 sm:w-5 sm:h-6 lg:w-5 lg:h-8"
         >
           <path
             fillRule="evenodd"

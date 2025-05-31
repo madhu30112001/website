@@ -2,11 +2,11 @@ import React, { useContext, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { StoreContext } from "../contextapi/contextapi";
 import axios from "axios";
-import register from "./Register"
+import register from "./Register";
 
 import { toast } from "react-toastify";
 const Login = () => {
-  const { url, setToken,setUser } = useContext(StoreContext);
+  const { url, setToken, setUser } = useContext(StoreContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [redirect, setredirect] = useState(false);
@@ -17,18 +17,14 @@ const Login = () => {
       const response = await axios.post(
         `${url}/api/user/login`,
         { email, password },
-        { withCredentials: true }
+        { withCredentials: true },
       );
       if (response.data.success) {
-        setUser(response.data.userlogin)
+        setUser(response.data.userlogin);
 
         toast.success(response.data.message);
 
-      
-          setredirect(true)
-
-       
-
+        setredirect(true);
       } else {
         toast.error(response.data.message);
       }
@@ -39,7 +35,6 @@ const Login = () => {
   if (redirect) {
     // window.location.href = "http://localhost:5173/";
     return <Navigate to="/" />; // Redirect to home page
-
   }
   return (
     <div className="mt-4 w-[100%] h-[100%] relative z-[1000] grow flex items-center justify-around">

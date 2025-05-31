@@ -112,13 +112,11 @@ const specificplacedetails = async (req, res) => {
 const getindexplaces = async (req, res) => {
   try {
     const places = await placeModel.find();
-    res
-      .status(200)
-      .json({
-        status: 200,
-        message: "successfully fetched the places data",
-        data: places,
-      });
+    res.status(200).json({
+      status: 200,
+      message: "successfully fetched the places data",
+      data: places,
+    });
   } catch (error) {
     console.error("failed to fetch", error);
 
