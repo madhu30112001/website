@@ -51,9 +51,9 @@ A modern, responsive food delivery website built using the **MERN stack** (Mongo
 ```bash
 git clone repo-url
 cd food-website
+```
 
-
-### Screenshots
+### 📸 Screenshots
 
 Frontend
 
