@@ -1,66 +1,57 @@
 # Food Website
 
-A modern, responsive food delivery website built using the MERN (MongoDB, Express, React, Node.js) stack. This project showcases a seamless user experience for browsing menus, ordering food, and tracking deliveries.
+A modern, responsive food delivery website built using the **MERN stack** (MongoDB, Express.js, React.js, Node.js). This project delivers a seamless experience for browsing menus, placing orders, and managing accounts.
 
-## Features
+---
 
-**User Authentication**: Sign up, log in, and secure access to user accounts.
+## 🚀 Features
 
-**Dynamic Menu**: Real-time updates to menu items and availability.
+- ✅ **User Authentication**: Sign up, log in, and secure user access.
+- 🍽️ **Dynamic Menu**: Explore and filter real-time food categories.
+- 🛒 **Order Management**: Add to cart, place orders, and track delivery.
+- 💳 **Payment Integration**: Secure payment gateway integration (e.g., Paypal).
+- 🛠️ **Admin Panel**: Control menu items, view user orders, and update statuses.
+- 📱 **Mobile Responsive**: Optimized for both desktop and mobile devices.
 
-**Order Management**: Add items to cart, place orders, and track delivery status.
+---
 
-**Payment Integration**: Secure payment gateway for transactions.
+## 🛠️ Technologies Used
 
-**Admin Panel**: Manage menu items, orders, and user accounts.
-
-**Mobile Responsive**: Optimized design for mobile and desktop views.
-
-## Technologies Used
-
-**Frontend**
-
+### 🔹 Frontend
 - React.js
+- React Router
+- Tailwind CSS / SCSS
+- Axios
 
-- CSS/SCSS
-
-**Backend**
-
+### 🔹 Backend
 - Node.js
-
 - Express.js
+- MongoDB + Mongoose
 
-- MongoDB client (database)
+### 🧪 Testing
+- Vitest
+- React Testing Library
+- Jest DOM
 
-- Mongoose (ODM)
+---
 
-## Installation
+## 📦 Installation & Setup
 
-### Prerequisites
+### 🔧 Prerequisites
+- Node.js installed
+- MongoDB server (local or cloud MongoDB Atlas)
+- `npm` or `yarn`
 
-Node.js installed
+---
 
-MongoDB server running
+### ⚙️ Steps to Run Locally
 
-## Steps
+1. **Clone the Repository**
 
-**Clone the repository**:
-
-git clone 
-
-**Navigate to the project directory**:
-
+```bash
+git clone repo-url
 cd food-website
 
-Install dependencies:
-
-npm install
-
-**Start the development server**:
-
-cd ..
-
-npm run dev
 
 ## Screenshots
 
