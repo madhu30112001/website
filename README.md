@@ -57,25 +57,25 @@ cd food-website
 
 Frontend
 
-![Home Page](./Screenshots/Home.png)
+![Home Page](/Screenshots/Home.png)
 
-![Login Page](./Screenshots/Login.png)
+![Login Page](/Screenshots/Login.png)
 
 
-![Cart Page](./Screenshots/Cart.png)
+![Cart Page](/Screenshots/Cart.png)
 
-![Cart Total Page](./Screenshots/Cart_Total.png)
+![Cart Total Page](/Screenshots/Cart_Total.png)
 
-![Orders Page](./Screenshots/Orders.png)
+![Orders Page](/Screenshots/Orders.png)
 
 
 ## Admin
 
-![Add Page](./Screenshots/Admin_Add.png)
+![Add Page](/Screenshots/Admin_Add.png)
 
-![List Page](./Screenshots/List.png)
+![List Page](/Screenshots/List.png)
 
-![Admin Orders Page](./Screenshots/Admin_orders.png)
+![Admin Orders Page](/Screenshots/Admin_orders.png)
 
 
 
