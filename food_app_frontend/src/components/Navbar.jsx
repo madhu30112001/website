@@ -60,7 +60,7 @@ const Navbar = ({ setShowLogin }) => {
                 </div>
                 {!token ? <button onClick={() => setShowLogin(true)} className='btn' type='button'>sign in</button>
                     : <div className='navbar-profile'>
-                        <FontAwesomeIcon icon={faUserCircle} className='fontawesome-basket' />
+                        <FontAwesomeIcon icon={faUserCircle} className='fontawesome-basket' data-testid="user-circle-icon" />
                         <ul className="nav-profile-dropdown">
                             <li onClick={() => navigate('/myorders')}>
                                 <FontAwesomeIcon icon={faBagShopping} className='fontawesome-basket' />

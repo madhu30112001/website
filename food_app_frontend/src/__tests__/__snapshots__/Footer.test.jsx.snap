@@ -1,0 +1,226 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Footer > footer to match snashot 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="footer"
+        id="footer"
+      >
+        <div
+          class="footer-content"
+        >
+          <div
+            class="footer-content-left"
+          >
+            <img
+              alt=""
+              src="/src/assets/footer.png"
+            />
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum in, beatae dolorem non optio cupiditate, quam sunt dicta dolores minima exercitationem ducimus totam aut asperiores inventore harum laudantium. Distinctio, libero.
+            </p>
+            <div
+              class="footer-social-icons"
+            >
+              <img
+                alt=""
+                class="footer-img"
+                src="/src/assets/facebook_icon.png"
+              />
+              <img
+                alt=""
+                class="footer-img"
+                src="/src/assets/twitter_icon.png"
+              />
+              <img
+                alt=""
+                class="footer-img"
+                src="/src/assets/linkedin_icon.png"
+              />
+            </div>
+          </div>
+          <div
+            class="footer-content-center"
+          >
+            <h2>
+              COMPANY
+            </h2>
+            <ul>
+              <li>
+                Home
+              </li>
+              <li>
+                About us
+              </li>
+              <li>
+                Delivery
+              </li>
+              <li>
+                Privacy Policy
+              </li>
+            </ul>
+          </div>
+          <div
+            class="footer-content-right"
+          >
+            <h2>
+              GET IN TOUCH
+            </h2>
+            <ul>
+              <li>
+                +93 456465558
+              </li>
+              <li>
+                randomperson@gmail.com
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <p
+          class="footer-copyright"
+        >
+          Copyright 2024 © randomerson - All Right Reserved.
+        </p>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="footer"
+      id="footer"
+    >
+      <div
+        class="footer-content"
+      >
+        <div
+          class="footer-content-left"
+        >
+          <img
+            alt=""
+            src="/src/assets/footer.png"
+          />
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum in, beatae dolorem non optio cupiditate, quam sunt dicta dolores minima exercitationem ducimus totam aut asperiores inventore harum laudantium. Distinctio, libero.
+          </p>
+          <div
+            class="footer-social-icons"
+          >
+            <img
+              alt=""
+              class="footer-img"
+              src="/src/assets/facebook_icon.png"
+            />
+            <img
+              alt=""
+              class="footer-img"
+              src="/src/assets/twitter_icon.png"
+            />
+            <img
+              alt=""
+              class="footer-img"
+              src="/src/assets/linkedin_icon.png"
+            />
+          </div>
+        </div>
+        <div
+          class="footer-content-center"
+        >
+          <h2>
+            COMPANY
+          </h2>
+          <ul>
+            <li>
+              Home
+            </li>
+            <li>
+              About us
+            </li>
+            <li>
+              Delivery
+            </li>
+            <li>
+              Privacy Policy
+            </li>
+          </ul>
+        </div>
+        <div
+          class="footer-content-right"
+        >
+          <h2>
+            GET IN TOUCH
+          </h2>
+          <ul>
+            <li>
+              +93 456465558
+            </li>
+            <li>
+              randomperson@gmail.com
+            </li>
+          </ul>
+        </div>
+      </div>
+      <hr />
+      <p
+        class="footer-copyright"
+      >
+        Copyright 2024 © randomerson - All Right Reserved.
+      </p>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

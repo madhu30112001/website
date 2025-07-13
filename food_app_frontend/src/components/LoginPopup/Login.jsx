@@ -48,7 +48,7 @@ const Login = ({ setShowLogin }) => {
           <img
             onClick={() => setShowLogin(false)}
             src={assets.cross_icon}
-            alt=""
+            alt="cross icon"
           />
         </div>
         <div className="login-popup-inputs">
