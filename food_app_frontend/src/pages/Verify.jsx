@@ -1,48 +1,40 @@
-import React, { useContext, useEffect } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { StoreContext } from '../context/Contextapi';
-import axios from 'axios';
+import React, { useEffect } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { verifyPayment } from "../redux/slice/globalSlice";
 
 const Verify = () => {
   const [searchParams] = useSearchParams();
-  const success = searchParams.get('success');
-  const orderId = searchParams.get('orderId');
-  const paymentId = searchParams.get('paymentId'); // Retrieve paymentId from query params
-  const payerId = searchParams.get('PayerID'); // Retrieve PayerID from query params
-  const { url } = useContext(StoreContext);
+  const success = searchParams.get("success");
+  const orderId = searchParams.get("orderId");
+  const paymentId = searchParams.get("paymentId");
+  const payerId = searchParams.get("PayerID");
+
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const verifyPayment = async () => {
-    try {
-      // Make the request with the necessary parameters
-      const response = await axios.post(`${url}/api/order/verify`, {
-        success,
-        orderId,
-        paymentId,  // Pass the paymentId
-        payerId,     // Pass the PayerID
-      });
-
-      if (response.data.success) {
-        navigate('/myorders'); // Redirect to My Orders page on success
-      } else {
-        navigate('/'); // Redirect to home page on failure
-      }
-    } catch (error) {
-      console.error('Payment verification failed:', error);
-      navigate('/'); // Redirect to home page in case of error
-    }
-  };
-
   useEffect(() => {
+    const handleVerify = async () => {
+      const result = await dispatch(
+        verifyPayment({ success, orderId, paymentId, payerId })
+      );
+
+      if (verifyPayment.fulfilled.match(result)) {
+        navigate("/myorders");
+      } else {
+        navigate("/");
+      }
+    };
+
     if (success && orderId) {
-      verifyPayment(); // Call the verify function on load
+      handleVerify();
     } else {
-      navigate('/'); // If no success or orderId, redirect to home
+      navigate("/");
     }
-  }, [success, orderId, navigate]);
+  }, [success, orderId, paymentId, payerId, dispatch, navigate]);
 
   return (
-    <div className='verify'>
+    <div className="verify">
       <div className="spinner"></div>
       <p>Verifying payment, please wait...</p>
     </div>

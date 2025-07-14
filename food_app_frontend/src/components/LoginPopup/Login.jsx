@@ -1,12 +1,13 @@
 import React, { useContext, useState } from "react";
 
 import { assets } from "../../assets/assets";
-import { StoreContext } from "../../context/Contextapi";
 import axios from "axios";
+import { setToken } from "../../redux/slice/globalSlice";
+import { url } from "../../utils/helper";
+import { useDispatch } from "react-redux";
 
 const Login = ({ setShowLogin }) => {
-  const { url, setToken } = useContext(StoreContext);
-
+  const dispatch = useDispatch();
   const [currentState, setCurrentState] = useState("Login");
   const [data, setData] = useState({
     name: "",
@@ -32,7 +33,7 @@ const Login = ({ setShowLogin }) => {
     const response = await axios.post(newUrl, data);
 
     if (response.data.success) {
-      setToken(response.data.token);
+      dispatch(setToken(response.data.token));
       localStorage.setItem("token", response.data.token);
       setShowLogin(false);
     } else {
