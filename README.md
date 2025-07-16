@@ -1,6 +1,6 @@
 # Food Website
 
-A modern, responsive food delivery website built using the **MERN stack** (MongoDB, Express.js, React.js, Node.js). This project delivers a seamless experience for browsing menus, placing orders, and managing accounts.
+A modern, responsive food delivery website built using the **MERN stack** (MongoDB, Express.js, React.js, Node.js,Redux). This project delivers a seamless experience for browsing menus, placing orders, and managing accounts.
 
 ---
 
@@ -20,6 +20,7 @@ A modern, responsive food delivery website built using the **MERN stack** (Mongo
 ### 🔹 Frontend
 - React.js
 - React Router
+- Redux Toolkit
 - Tailwind CSS / SCSS
 - Axios
 
