@@ -1,13 +1,11 @@
-import React, { useContext, useState } from "react";
-
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { assets } from "../../assets/assets";
-import axios from "axios";
-import { setToken } from "../../redux/slice/globalSlice";
-import { url } from "../../utils/helper";
-import { useDispatch } from "react-redux";
+import { loginUser } from "../../redux/slice/globalSlice";
 
 const Login = ({ setShowLogin }) => {
   const dispatch = useDispatch();
+  const { error } = useSelector((state) => state.global); // Optional for showing error
   const [currentState, setCurrentState] = useState("Login");
   const [data, setData] = useState({
     name: "",
@@ -16,28 +14,19 @@ const Login = ({ setShowLogin }) => {
   });
 
   const onChangeHandler = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
-    setData((data) => ({ ...data, [name]: value }));
+    const { name, value } = event.target;
+    setData((prev) => ({ ...prev, [name]: value }));
   };
 
   const onLogin = async (event) => {
     event.preventDefault();
-    let newUrl = url;
-    if (currentState === "Login") {
-      newUrl += "/api/user/login";
-    } else {
-      newUrl += "/api/user/register";
-    }
 
-    const response = await axios.post(newUrl, data);
+    const resultAction = await dispatch(loginUser({ data, currentState }));
 
-    if (response.data.success) {
-      dispatch(setToken(response.data.token));
-      localStorage.setItem("token", response.data.token);
+    if (loginUser.fulfilled.match(resultAction)) {
       setShowLogin(false);
-    } else {
-      alert(response.data.message);
+    } else if (loginUser.rejected.match(resultAction)) {      
+      alert(resultAction.payload);
     }
   };
 
@@ -53,9 +42,7 @@ const Login = ({ setShowLogin }) => {
           />
         </div>
         <div className="login-popup-inputs">
-          {currentState === "Login" ? (
-            <></>
-          ) : (
+          {currentState === "Login" ? null : (
             <input
               name="name"
               onChange={onChangeHandler}
@@ -65,7 +52,6 @@ const Login = ({ setShowLogin }) => {
               required
             />
           )}
-
           <input
             name="email"
             onChange={onChangeHandler}

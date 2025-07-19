@@ -9,7 +9,7 @@ const initialState = {
   error: null,
 };
 
-// 🔁 Fetch food list
+
 export const fetchFoodList = createAsyncThunk(
   "global/fetchFoodList",
   async (_, thunkAPI) => {
@@ -22,8 +22,29 @@ export const fetchFoodList = createAsyncThunk(
     }
   }
 );
+export const loginUser = createAsyncThunk(
+  "global/loginUser",
+  async ({ data, currentState }, thunkAPI) => {
+    try {
+      const endpoint =
+        currentState === "Login" ? "/user/login" : "/user/register";
+      const response = await axiosInstance.post(endpoint, data);
 
-// 🔁 Load cart from server
+      if (response.data.success) {
+        localStorage.setItem("token", response.data.token);
+        return response.data.token;
+      } else {
+        return thunkAPI.rejectWithValue(response.data.message);
+      }
+    } catch (error) {
+      return thunkAPI.rejectWithValue(
+        error.response?.data?.message || error.message
+      );
+    }
+  }
+);
+
+
 export const loadCartData = createAsyncThunk(
   "global/loadCartData",
   async (_, thunkAPI) => {
@@ -163,8 +184,6 @@ export const verifyPayment = createAsyncThunk(
 export const selectTotalCartAmount = (state) => {
   const cartItems = state.global.cartItems;
   const foodList = state.global.foodList;
-  console.log(cartItems, foodList);
-
   let total = 0;
   for (let id in cartItems) {
     const foodItem = foodList.find((item) => item._id === id);
@@ -220,6 +239,10 @@ export const globalSlice = createSlice({
       })
       .addCase(orderPlace.fulfilled, (state, action) => {
         state.loading = false;
+      })
+      .addCase(loginUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.token = action.payload;
       })
       .addCase(fetchOrders.fulfilled, (state, action) => {
         state.loading = false;

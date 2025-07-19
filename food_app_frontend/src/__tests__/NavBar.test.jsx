@@ -2,8 +2,12 @@ import { render, fireEvent, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import { Provider } from "react-redux";
+import { configureStore } from "@reduxjs/toolkit";
+import globalReducer from "../redux/slice/globalSlice";
 import { expect, vi } from "vitest";
-import { StoreContext } from "../context/Contextapi";
+
+
 vi.mock("@fortawesome/react-fontawesome", () => ({
   FontAwesomeIcon: ({ icon, ...props }) => (
     <span data-testid={`${icon.iconName}-icon`} {...props}>
@@ -17,63 +21,107 @@ vi.mock("../assets/assets", () => ({
     header_pic: "/logo.png",
   },
 }));
-describe("Navbar component", () => {
-  const mockSetShowLogin = vi.fn();
-  const mockGetTotalCartAmount = vi.fn(() => 1);
-  const mockSetToken = vi.fn();
-  const renderWithRouter = (ui, route = "/") => {
-    window.history.pushState({}, "Test page", route);
-    return render(
-      <StoreContext.Provider
-        value={{
-          getTotalCartAmount: mockGetTotalCartAmount,
-          token: "",
-          setToken: mockSetToken,
-        }}
-      >
-        <MemoryRouter initialEntries={[route]}>
-          <Routes>
-            <Route path="*" element={ui} />
-          </Routes>
-        </MemoryRouter>
-      </StoreContext.Provider>
-    );
-  };
 
-  test("show menus and navitems", () => {
-    renderWithRouter(<Navbar setShowLogin={mockSetShowLogin} />);
+const renderWithReduxAndRouter = (ui, { preloadedState = {}, route = "/" } = {}) => {
+  const store = configureStore({
+    reducer: {
+      global: globalReducer,
+    },
+    preloadedState,
+  });
+
+  window.history.pushState({}, "Test page", route);
+
+  return render(
+    <Provider store={store}>
+      <MemoryRouter initialEntries={[route]}>
+        <Routes>
+          <Route path="*" element={ui} />
+        </Routes>
+      </MemoryRouter>
+    </Provider>
+  );
+};
+
+const mockSetShowLogin = vi.fn();
+
+describe("Navbar Component - Redux", () => {
+  test("should render nav items", () => {
+    renderWithReduxAndRouter(<Navbar setShowLogin={mockSetShowLogin} />, {
+      preloadedState: {
+        global: {
+          foodList: [],
+          cartItems: {},
+          userOrders: [],
+          token: "",
+          loading: false,
+          error: null,
+        },
+      },
+    });
+
     expect(screen.getByAltText("")).toBeInTheDocument();
     expect(screen.getByText(/home/i)).toBeInTheDocument();
     expect(screen.getByText(/menu/i)).toBeInTheDocument();
     expect(screen.getByText(/mobile-app/i)).toBeInTheDocument();
     expect(screen.getByText(/contact/i)).toBeInTheDocument();
   });
-  test("click on sign in and it will open sign in page", () => {
-    renderWithRouter(<Navbar setShowLogin={mockSetShowLogin} />);
-    const open = screen.getByRole("button", { name: /sign in/i });
-    fireEvent.click(open);
+
+  test("clicking 'Sign in' calls setShowLogin(true)", () => {
+    renderWithReduxAndRouter(<Navbar setShowLogin={mockSetShowLogin} />, {
+      preloadedState: {
+        global: {
+          foodList: [],
+          cartItems: {},
+          userOrders: [],
+          token: "",
+          loading: false,
+          error: null,
+        },
+      },
+    });
+
+    fireEvent.click(screen.getByRole("button", { name: /sign in/i }));
     expect(mockSetShowLogin).toHaveBeenCalledWith(true);
   });
-  test("show cart icon with red dot", () => {
-    renderWithRouter(<Navbar setShowLogin={mockSetShowLogin} />);
-    expect(screen.getByTestId("cart-shopping-icon")).toBeInTheDocument(); //
+
+  test("shows cart icon with red dot when cart has items", () => {
+    renderWithReduxAndRouter(<Navbar setShowLogin={mockSetShowLogin} />, {
+      preloadedState: {
+        global: {
+          foodList: [
+            { _id: "1", price: 10 },
+            { _id: "2", price: 20 },
+          ],
+          cartItems: {
+            "1": 2,
+            "2": 1,
+          },
+          userOrders: [],
+          token: "",
+          loading: false,
+          error: null,
+        },
+      },
+    });
+
+    expect(screen.getByTestId("cart-shopping-icon")).toBeInTheDocument();
     expect(document.querySelector(".dot")).toBeInTheDocument();
   });
 
-  test("show logout and orders once logged in", () => {
-    render(
-      <StoreContext.Provider
-        value={{
-          getTotalCartAmount: mockGetTotalCartAmount,
-          token: "mock token",
-          setToken: mockSetToken,
-        }}
-      >
-        <MemoryRouter>
-          <Navbar setShowLogin={mockSetShowLogin} />
-        </MemoryRouter>
-      </StoreContext.Provider>
-    );
+  test("renders Logout and Orders when user is logged in", () => {
+    renderWithReduxAndRouter(<Navbar setShowLogin={mockSetShowLogin} />, {
+      preloadedState: {
+        global: {
+          foodList: [],
+          cartItems: {},
+          userOrders: [],
+          token: "mockToken123",
+          loading: false,
+          error: null,
+        },
+      },
+    });
 
     expect(screen.getByTestId("user-circle-icon")).toBeInTheDocument();
     expect(screen.getByText(/Orders/i)).toBeInTheDocument();

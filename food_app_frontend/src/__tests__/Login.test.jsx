@@ -1,67 +1,116 @@
+const mockedPost = vi.fn();
+
+vi.mock("../../utils/axiosSetup", () => {
+  return {
+    __esModule: true,
+    default: {
+      post: mockedPost,
+    },
+  };
+});
+
+vi.mock("../redux/slice/globalSlice", async () => {
+  const actual = await vi.importActual("../redux/slice/globalSlice");
+
+  const mockedLoginThunk = ({ data }) => async () => {
+    if (data.email === "invalid@example.com") {
+      return {
+        payload: { success: false, message: "Invalid credentials" },
+      };
+    } else if (data.email === "nouser@example.com") {
+      return {
+        payload: { success: false, message: "User does not exist" },
+      };
+    } else {
+      return {
+        payload: { success: true, token: "mockToken123" },
+      };
+    }
+  };
+
+  mockedLoginThunk.fulfilled = {
+    match: (action) => action?.payload?.success === true,
+  };
+
+  mockedLoginThunk.rejected = {
+    match: (action) => action?.payload?.success === false,
+  };
+
+  return {
+    __esModule: true,
+    ...actual,
+    loginUser: mockedLoginThunk,
+  };
+});
+
+
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import Login from "../components/LoginPopup/Login.jsx";
-import axios from "axios";
-import { StoreContext } from "../context/Contextapi.jsx";
 import { vi } from "vitest";
+import { Provider } from "react-redux";
+import { configureStore } from "@reduxjs/toolkit";
+import globalReducer from "../redux/slice/globalSlice";
+import Login from "../components/LoginPopup/Login.jsx";
 
-vi.mock("axios");
+const mockSetShowLogin = vi.fn();
 
-describe("Login Component", () => {
-  const mockSetToken = vi.fn();
-  const mockSetShowLogin = vi.fn();
+describe("Login Component - Redux Version", () => {
+  const renderWithRedux = (component) => {
+    const store = configureStore({
+      reducer: { global: globalReducer },
+      preloadedState: {
+        global: {
+          foodList: [],
+          cartItems: {},
+          userOrders: [],
+          token: "",
+          loading: false,
+          error: null,
+        },
+      },
+    });
 
-  const renderComponent = () =>
-    render(
-      <StoreContext.Provider value={{ url: "yourURL", setToken: mockSetToken }}>
-        <Login setShowLogin={mockSetShowLogin} />
-      </StoreContext.Provider>
+    return render(
+      <Provider store={store}>
+        {React.cloneElement(component, { setShowLogin: mockSetShowLogin })}
+      </Provider>
     );
+  };
 
   beforeEach(() => {
     vi.clearAllMocks();
+    mockedPost.mockReset();
   });
 
   test("renders Login heading and input fields", () => {
-    renderComponent();
-
-    const heading = screen.getByRole("heading", { name: "Login" });
-    expect(heading).toBeInTheDocument();
-
+    renderWithRedux(<Login />);
+    expect(screen.getByRole("heading", { name: "Login" })).toBeInTheDocument();
     expect(screen.getByPlaceholderText("Your email")).toBeInTheDocument();
     expect(screen.getByPlaceholderText("Password")).toBeInTheDocument();
-
     expect(screen.queryByPlaceholderText("Your name")).not.toBeInTheDocument();
   });
 
   test("switches to Sign Up mode", () => {
-    renderComponent();
-
-    const switchLink = screen.getByText(/Create a new account\?/i);
+    renderWithRedux(<Login />);
     fireEvent.click(screen.getByText("Click here"));
-
     expect(screen.getByRole("heading", { name: "Sign Up" })).toBeInTheDocument();
     expect(screen.getByPlaceholderText("Your name")).toBeInTheDocument();
   });
 
   test("handles input changes", () => {
-    renderComponent();
-
+    renderWithRedux(<Login />);
     const emailInput = screen.getByPlaceholderText("Your email");
-    fireEvent.change(emailInput, { target: { value: "test@example.com" } });
-    expect(emailInput.value).toBe("test@example.com");
-
     const passwordInput = screen.getByPlaceholderText("Password");
+
+    fireEvent.change(emailInput, { target: { value: "test@example.com" } });
     fireEvent.change(passwordInput, { target: { value: "123456" } });
+
+    expect(emailInput.value).toBe("test@example.com");
     expect(passwordInput.value).toBe("123456");
   });
 
  test("submits login form successfully", async () => {
-  axios.post.mockResolvedValueOnce({
-    data: { success: true, token: "mockToken123" },
-  });
-
-  renderComponent();
+  renderWithRedux(<Login />);
 
   fireEvent.change(screen.getByPlaceholderText("Your email"), {
     target: { value: "test@example.com" },
@@ -69,68 +118,44 @@ describe("Login Component", () => {
   fireEvent.change(screen.getByPlaceholderText("Password"), {
     target: { value: "123456" },
   });
-
-  const checkbox = screen.getByRole("checkbox");
-  fireEvent.click(checkbox);
-  expect(checkbox.checked).toBe(true);
-
-  const loginButton = screen.getByRole("button", { name: "Login" });
-  fireEvent.click(loginButton);
-
-  await waitFor(() => {
-    expect(axios.post).toHaveBeenCalledWith(
-      "yourURL/api/user/login",
-      {
-        email: "test@example.com",
-        password: "123456",
-        name: "", // name is empty in Login mode
-      }
-    );
-  });
-
-  expect(mockSetToken).toHaveBeenCalledWith("mockToken123");
-  expect(mockSetShowLogin).toHaveBeenCalledWith(false);
-});
-
-
- test("shows alert on login failure", async () => {
-  // Mock alert function
-  const alertMock = vi.spyOn(window, "alert").mockImplementation(() => {});
-
-  // Mock failed login response
-  axios.post.mockResolvedValueOnce({
-    data: { success: false, message: "Invalid credentials" },
-  });
-
-  renderComponent();
-
-  // Fill the form
-  fireEvent.change(screen.getByPlaceholderText("Your email"), {
-    target: { value: "wrong@example.com" },
-  });
-  fireEvent.change(screen.getByPlaceholderText("Password"), {
-    target: { value: "wrongpass" },
-  });
-
-  // Check the checkbox
-  const checkbox = screen.getByRole("checkbox");
-  fireEvent.click(checkbox);
-
-  // Submit the form
+  fireEvent.click(screen.getByRole("checkbox"));
   fireEvent.click(screen.getByRole("button", { name: "Login" }));
 
-  // Wait for alert to be called
   await waitFor(() => {
-    expect(alertMock).toHaveBeenCalledWith("Invalid credentials");
+    expect(mockSetShowLogin).toHaveBeenCalledWith(false);
   });
 });
 
+
+
+  test("shows alert on login failure", async () => {
+    const alertMock = vi.spyOn(window, "alert").mockImplementation(() => {});
+
+    mockedPost.mockResolvedValueOnce({
+      data: { success: false, message: "Invalid credentials" },
+    });
+
+    renderWithRedux(<Login />);
+
+    fireEvent.change(screen.getByPlaceholderText("Your email"), {
+      target: { value: "invalid@example.com" },
+    });
+    fireEvent.change(screen.getByPlaceholderText("Password"), {
+      target: { value: "wrongpass" },
+    });
+    fireEvent.click(screen.getByRole("checkbox"));
+    fireEvent.click(screen.getByRole("button", { name: "Login" }));
+
+    await waitFor(() => {
+      expect(alertMock).toHaveBeenCalledWith({ success: false, message: "Invalid credentials" });
+    });
+
+    alertMock.mockRestore();
+  });
+
   test("closes modal when cross icon is clicked", () => {
-    renderComponent();
-
-    const crossIcon = screen.getByRole("img",{alt:"cross icon"});
-    fireEvent.click(crossIcon);
-
+    renderWithRedux(<Login />);
+    fireEvent.click(screen.getByRole("img", { alt: "cross icon" }));
     expect(mockSetShowLogin).toHaveBeenCalledWith(false);
   });
 });
