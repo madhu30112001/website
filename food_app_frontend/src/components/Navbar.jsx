@@ -30,7 +30,7 @@ const Navbar = ({ setShowLogin }) => {
   const navigate = useNavigate();
 
   const logout = () => {
-    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
     dispatch(setToken(""));
     navigate("/");
   };

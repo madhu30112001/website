@@ -20,12 +20,16 @@ const Login = ({ setShowLogin }) => {
 
   const onLogin = async (event) => {
     event.preventDefault();
-
     const resultAction = await dispatch(loginUser({ data, currentState }));
 
     if (loginUser.fulfilled.match(resultAction)) {
+      if (currentState === "Sign Up") {
+        setCurrentState("Login");
+        return;
+      }
+
       setShowLogin(false);
-    } else if (loginUser.rejected.match(resultAction)) {      
+    } else if (loginUser.rejected.match(resultAction)) {
       alert(resultAction.payload);
     }
   };

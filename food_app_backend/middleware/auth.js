@@ -1,10 +1,12 @@
-import jwt from 'jsonwebtoken';
+import jwt from "jsonwebtoken";
 
 const authMiddleware = async (req, res, next) => {
   const authHeader = req.headers.authorization;
 
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
-    return res.status(401).json({ success: false, message: 'Not Authorized, login again' });
+    return res
+      .status(401)
+      .json({ success: false, message: "Not Authorized, login again" });
   }
 
   const token = authHeader.split(" ")[1];
@@ -15,7 +17,9 @@ const authMiddleware = async (req, res, next) => {
     next();
   } catch (error) {
     console.log(error);
-    res.status(401).json({ success: false, message: 'Invalid or expired token' });
+    res
+      .status(401)
+      .json({ success: false, message: "Invalid or expired token" });
   }
 };
 

@@ -14,8 +14,9 @@ const FoodDisplay = ({ category }) => {
 
   useEffect(() => {
     dispatch(fetchFoodList());
-    if (localStorage.getItem("token")) {
-      dispatch(setToken(localStorage.getItem("token")));
+    if (sessionStorage.getItem("token")) {
+      dispatch(setToken(sessionStorage.getItem("token")));
+
       dispatch(loadCartData());
     }
   }, []);

@@ -4,23 +4,21 @@ const initialState = {
   foodList: [],
   cartItems: {},
   userOrders: [],
-  token: localStorage.getItem("token") || "",
+  token: sessionStorage.getItem("token") || "",
   loading: false,
   error: null,
 };
-
 
 export const fetchFoodList = createAsyncThunk(
   "global/fetchFoodList",
   async (_, thunkAPI) => {
     try {
       const response = await axiosInstance.get("/food/list");
-
       return response.data.data;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response?.data || err.message);
     }
-  }
+  },
 );
 export const loginUser = createAsyncThunk(
   "global/loginUser",
@@ -31,19 +29,18 @@ export const loginUser = createAsyncThunk(
       const response = await axiosInstance.post(endpoint, data);
 
       if (response.data.success) {
-        localStorage.setItem("token", response.data.token);
+        sessionStorage.setItem("token", response.data.token);
         return response.data.token;
       } else {
         return thunkAPI.rejectWithValue(response.data.message);
       }
     } catch (error) {
       return thunkAPI.rejectWithValue(
-        error.response?.data?.message || error.message
+        error.response?.data?.message || error.message,
       );
     }
-  }
+  },
 );
-
 
 export const loadCartData = createAsyncThunk(
   "global/loadCartData",
@@ -55,13 +52,13 @@ export const loadCartData = createAsyncThunk(
         {},
         {
           headers: { Authorization: `Bearer ${token}` },
-        }
+        },
       );
       return response.data.cartData;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.response?.data || err.message);
     }
-  }
+  },
 );
 export const addToCart = createAsyncThunk(
   "global/addToCart",
@@ -75,7 +72,7 @@ export const addToCart = createAsyncThunk(
           { itemId },
           {
             headers: { Authorization: `Bearer ${token}` },
-          }
+          },
         );
       }
 
@@ -84,7 +81,7 @@ export const addToCart = createAsyncThunk(
       console.error("Failed to update cart on server:", error);
       return thunkAPI.rejectWithValue("Cart update failed");
     }
-  }
+  },
 );
 
 export const removeFromCart = createAsyncThunk(
@@ -100,7 +97,7 @@ export const removeFromCart = createAsyncThunk(
             headers: {
               Authorization: `Bearer ${token}`, // or `token` if your backend uses plain `token`
             },
-          }
+          },
         );
       }
       return itemId;
@@ -108,7 +105,7 @@ export const removeFromCart = createAsyncThunk(
       console.error("Failed to remove item:", error);
       return thunkAPI.rejectWithValue("Unable to remove item");
     }
-  }
+  },
 );
 
 export const orderPlace = createAsyncThunk(
@@ -127,14 +124,14 @@ export const orderPlace = createAsyncThunk(
         return response.data;
       } else {
         return thunkAPI.rejectWithValue(
-          "Error placing order. Please try again."
+          "Error placing order. Please try again.",
         );
       }
     } catch (error) {
       console.error("Error placing order:", error);
       return thunkAPI.rejectWithValue("Error placing your order.");
     }
-  }
+  },
 );
 export const fetchOrders = createAsyncThunk(
   "global/fetchOrders",
@@ -144,7 +141,7 @@ export const fetchOrders = createAsyncThunk(
       const response = await axiosInstance.post(
         "/order/userorders",
         {},
-        { headers: { Authorization: `Bearer ${token}` } }
+        { headers: { Authorization: `Bearer ${token}` } },
       );
       return response.data.data || [];
     } catch (error) {
@@ -152,7 +149,7 @@ export const fetchOrders = createAsyncThunk(
 
       return thunkAPI.rejectWithValue("Error showing your order.");
     }
-  }
+  },
 );
 export const verifyPayment = createAsyncThunk(
   "global/verifyPayment",
@@ -167,7 +164,7 @@ export const verifyPayment = createAsyncThunk(
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       if (response.data.success) {
@@ -179,7 +176,7 @@ export const verifyPayment = createAsyncThunk(
       console.error("Payment verification error:", error);
       return thunkAPI.rejectWithValue("Payment verification failed");
     }
-  }
+  },
 );
 export const selectTotalCartAmount = (state) => {
   const cartItems = state.global.cartItems;
@@ -214,8 +211,8 @@ export const globalSlice = createSlice({
         state.loading = true;
       })
       .addCase(loadCartData.fulfilled, (state, action) => {
-        state.cartItems = action.payload || {};
         state.loading = false;
+        state.cartItems = action.payload || {};
       })
       .addCase(loadCartData.rejected, (state, action) => {
         state.loading = false;

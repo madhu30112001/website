@@ -1,3 +1,15 @@
+@use "./partials/navbar";
+@use "./partials/header";
+@use "./partials/display";
+@use "./partials/exploremenu";
+@use "./partials/animations";
+@use "./partials/app-download";
+@use "./partials/cart";
+@use "./partials/footer";
+@use "./partials/loginpage";
+@use "./partials/placeholder";
+@use "./partials/verify";
+@use "./partials/myorder";
 :root {
   --font-size: 16px;
   --background-color: #fff;
@@ -58,18 +70,6 @@ li {
   list-style-type: none;
 }
 
-@import "./partials/navbar";
-@import "./partials/header";
-@import "./partials/display";
-@import "./partials/exploremenu";
-@import "./partials/animations";
-@import "./partials/app-download";
-@import "./partials/cart";
-@import "./partials/footer";
-@import "./partials/loginpage";
-@import "./partials/placeholder";
-@import "./partials/verify";
-@import "./partials/myorder"
 // @media (prefers-color-scheme: light) {
 //   :root {
 //     color: #213547;

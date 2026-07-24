@@ -5,8 +5,12 @@ import {
   selectFoodList,
   selectTotalCartAmount,
   removeFromCart,
+  loadCartData,
+  fetchFoodList,
+  setToken,
 } from "../redux/slice/globalSlice";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -15,6 +19,13 @@ const Cart = () => {
   const totalAmount = useSelector(selectTotalCartAmount);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    dispatch(fetchFoodList());
+    if (sessionStorage.getItem("token")) {
+      dispatch(setToken(sessionStorage.getItem("token")));
+      dispatch(loadCartData());
+    }
+  }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Navigating to order...");

@@ -10,18 +10,16 @@ const axiosInstance = axios.create({
 });
 
 export const setupInterceptors = () => {
-
   axiosInstance.interceptors.request.use(
     (config) => {
-      const token = localStorage.getItem("token");
+      const token = sessionStorage.getItem("token");
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }
       return config;
     },
-    (error) => Promise.reject(error)
+    (error) => Promise.reject(error),
   );
-
 
   axiosInstance.interceptors.response.use(
     (response) => response,
@@ -34,7 +32,7 @@ export const setupInterceptors = () => {
         }
       }
       return Promise.reject(error);
-    }
+    },
   );
 };
 
