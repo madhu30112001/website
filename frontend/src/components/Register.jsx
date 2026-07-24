@@ -5,8 +5,7 @@ import { StoreContext } from "../contextapi/contextapi";
 import axios from "axios";
 import { toast } from "react-toastify";
 const Register = () => {
-  const { url, setToken } = useContext(StoreContext);
-  const [currState, setCurrentState] = useState("Login");
+  const { url, setToken, setCurrentState } = useContext(StoreContext);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -42,7 +41,7 @@ const Register = () => {
 
   return (
     <div className="z-[1000] mt-4 grow flex items-center justify-around">
-      <div className="mb-64">
+      <div className="mb-0">
         <h1 className="text-4xl mb-4 text-center">Register</h1>
         <form
           className="max-w-md mx-auto border rounded-2xl p-3 shadow-md shadow-gray-300"
@@ -84,7 +83,7 @@ const Register = () => {
           </div>
           <div className="p-2 text-center text-gray-500">
             Already a member?{" "}
-            <Link className="underline text-primary" to={"/login"}>
+            <Link className="underline text-primary" to={"/login"} onClick={()=>setCurrentState("Login")}>
               Login now
             </Link>
           </div>

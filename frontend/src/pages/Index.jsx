@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { StoreContext } from "../contextapi/contextapi";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,7 +10,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const Index = () => {
-  const { url } = useContext(StoreContext);
+  const { url, profileData } = useContext(StoreContext);
+  const navigate = useNavigate();
   const [places, setPlaces] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -19,15 +20,19 @@ const Index = () => {
   useEffect(() => {
     const fetchPlaces = async () => {
       try {
-        const response = await axios.get(`${url}/api/places`, {
-          withCredentials: true,
-        });
-        setPlaces(response.data);
-        const ratings = {};
-        response.data.forEach((place) => {
-          ratings[place._id] = (Math.random() * 4 + 1).toFixed(1); // e.g. 3.6
-        });
-        setPlaceRatings(ratings);
+        if (!profileData) {
+          navigate("/login");
+        } else {
+          const response = await axios.get(`${url}/api/places`, {
+            withCredentials: true,
+          });
+          setPlaces(response.data);
+          const ratings = {};
+          response.data.forEach((place) => {
+            ratings[place._id] = (Math.random() * 4 + 1).toFixed(1); // e.g. 3.6
+          });
+          setPlaceRatings(ratings);
+        }
       } catch (error) {
         console.error("Error fetching places:", error);
         setError("Failed to load places.");

@@ -6,7 +6,7 @@ import register from "./Register";
 
 import { toast } from "react-toastify";
 const Login = () => {
-  const { url, setToken, setUser } = useContext(StoreContext);
+  const { url, setToken, setUser,setCurrentState } = useContext(StoreContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [redirect, setredirect] = useState(false);
@@ -69,7 +69,7 @@ const Login = () => {
           </div>
           <div className="p-2 text-center text-gray-500">
             Don't have an account?{" "}
-            <Link className="underline text-primary" to="/register">
+            <Link className="underline text-primary" to={"/register"} onClick={()=>setCurrentState("Register")}>
               Register now
             </Link>
           </div>

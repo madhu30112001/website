@@ -1,5 +1,5 @@
 import React, { useContext, useRef, useState, useEffect } from "react"; // ⬅️ updated
-import { Link, useNavigate } from "react-router-dom"; // ⬅️ updated
+import { Link, useNavigate,Navigate } from "react-router-dom"; // ⬅️ updated
 import { StoreContext } from "../contextapi/contextapi";
 import Login from "./Login";
 import ProfileComp from "./ProfileComp";
@@ -8,7 +8,8 @@ const Header = ({
   isSpecialPage = false,
   loginPage = "",
 }) => {
-  const { user } = useContext(StoreContext);
+  
+  const { user,setCurrentState,currState } = useContext(StoreContext);
   const [showDropdown, setShowDropdown] = useState(false); // ⬅️ added
   const dropdownRef = useRef(null); // ⬅️ added
   const navigate = useNavigate(); // ⬅️ added
@@ -19,7 +20,6 @@ const Header = ({
     navigate(path);
     setShowDropdown(false);
   };
-
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -29,6 +29,7 @@ const Header = ({
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+  
 
   return (
     <>
@@ -62,11 +63,12 @@ const Header = ({
             <span className="font-bold text-xl ml-2">Nesto</span>
           </Link>
         </div>
-        {!loginPage && (
+        {!loginPage &&  (
           <div
             className={`hidden sm:flex flex-col items-center gap-10 w-full ${isSpecialPage ? "" : "h-[9rem]"}`}
           >
-            {!isSpecialPage && (
+            
+            {!isSpecialPage&& (
               <div className="flex gap-5 justify-center items-center">
                 <div className="flex items-center gap-2">
                   <svg
@@ -204,7 +206,8 @@ const Header = ({
               </svg>
             </div>
             <span className="hidden sm:block text-base">
-              {user ? user.name : <ProfileComp />}
+              {user ? user.name : currState === "Login" ? <Navigate to="/login"/> : currState === "Register" ? <Navigate to="/register"/> : ""}
+
             </span>
           </button>
 

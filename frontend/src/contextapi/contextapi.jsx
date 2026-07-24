@@ -8,6 +8,8 @@ const StoreContextProvider = (props) => {
   const url = "http://localhost:4000";
   const [token, setToken] = useState("");
   const [user, setUser] = useState(null);
+  const[currentState,setCurrentState]=useState("Login")
+  const[profileData,setProfileData]=useState(false)
   const [ready, setReady] = useState(false);
   useEffect(() => {
     // Fetch the user profile if the user is not set
@@ -17,9 +19,11 @@ const StoreContextProvider = (props) => {
           withCredentials: true,
         });
         setUser(response.data); // Set user data from response
+        setProfileData(true)
       } catch (error) {
         console.error("Failed to fetch user profile", error);
         setUser(null); // Handle if user is not logged in or request fails
+        setProfileData(false)
       } finally {
         setReady(true); // Set ready state to true regardless of success or failure
       }
@@ -31,7 +35,7 @@ const StoreContextProvider = (props) => {
   }, [user, url]);
   return (
     <StoreContext.Provider
-      value={{ url, token, setToken, user, setUser, ready, setReady }}
+      value={{ url, token, setToken, user, setUser, ready, setReady, profileData,currentState,setCurrentState }}
     >
       {props.children}
     </StoreContext.Provider>
